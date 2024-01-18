@@ -13,7 +13,7 @@ func GetMutations() string {
 	return ""
 }
 
-func repeatExperiment(exp Experiment, reps []representation.Representation) {
+func repeatExperiment(exp Experiment) {
 	selected_rep := representation.SelectRepresentation(exp.Representation)
 	if selected_rep == nil {
 		log.Println("err")
@@ -49,10 +49,9 @@ func repeatExperiment(exp Experiment, reps []representation.Representation) {
 		fmt.Println("The second found representation is", "\n", best_ones[1].Data.Show())
 		return
 	} else {
-		repeatExperiment(exp, []representation.Representation{
-			best_ones[0].Data,
-			best_ones[1].Data,
-		})
+		exp.Payload.Father = best_ones[0].Data
+		exp.Payload.Mother = best_ones[1].Data
+		repeatExperiment(exp)
 	}
 
 }
@@ -92,9 +91,8 @@ func createExperiment(exp Experiment) {
 		fmt.Println("The best found representation is", "\n", best_ones[0].Data.Show())
 		fmt.Println("The second found representation is", "\n", best_ones[1].Data.Show())
 	} else {
-		repeatExperiment(exp, []representation.Representation{
-			best_ones[0].Data,
-			best_ones[1].Data,
-		})
+		exp.Payload.Father = best_ones[0].Data
+		exp.Payload.Mother = best_ones[1].Data
+		repeatExperiment(exp)
 	}
 }

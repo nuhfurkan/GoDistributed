@@ -19,13 +19,27 @@ func RandomIntegerInInteval(rep representations.Representation, payload represen
 
 
 func SimpleArithmaticRecombination(rep representations.Representation, payload representations.GeneratePayload) representations.Representation {
-	return nil
+	genes := make([]int, payload.Length)
+	for i := range genes {
+		if father_genes, ok := payload.Father.Get()["value"].([]int); ok {
+			if mother_genes, ok := payload.Mother.Get()["value"].([]int); ok {
+				genes[i] = (father_genes[i] + mother_genes[i]) / 2
+			}
+		}
+	}
+
+	return &representations.IntegerRepresentation{
+		Genes:	genes,
+	}
 }
 
+/*
 func SingleArithmaticRecombination(rep representations.Representation) representations.Representation {
+	
 	return nil
 }
 
 func WholeArithmaticRecombination(rep representations.Representation) representations.Representation {
 	return nil
 }
+*/

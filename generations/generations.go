@@ -6,13 +6,13 @@ import representations "go-distributed/representations"
 var GenerationFunctions = map[string] interface{} {
 	"binary": map[string]interface{}{
 		"random": 		RandomNBitGeneration,
-		"one-point": 	OnePointCrossover,
+		"one-point": 	OnePointCrossover, // there is a bug rigth now
 		"n-point":		NPointCrossover,
 		"uniform":		UniformCrossover,
 	},
 	"integer": map[string]interface{}{
-		"random": 	RandomIntegerInInteval,
-		
+		"random": 		RandomIntegerInInteval,
+		"simple_arith": SimpleArithmaticRecombination,
 	},
 	"floating_point": map[string]interface{}{
 		"random": 	RandomFloatGeneration,

@@ -185,10 +185,12 @@ func receiveFile(conn net.Conn, saveDirectory string, bufferSize int) error {
 	  // if there was any error, print it here
 	  fmt.Println("could not run command: ", err)
 	  fmt.Println("In file unzip")
+		exec.Command("rm", "./saves/"+fileName).Run()
 	} else {
 		// if you want to see the out uncomment and define out up
 		// fmt.Println(out)
 	}
+
 	return nil
 }
 
